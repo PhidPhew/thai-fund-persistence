@@ -40,7 +40,9 @@ def get_all(path, max_pages=10_000, **params):
             p["next_cursor"] = cursor
         r = S.get(BASE + path, params=p, timeout=60)
         if r.status_code == 421:  # rate limited
-            time.sleep(int(r.headers.get("Retry-After", 5)))
+            wait = int(r.headers.get("Retry-After", 5))
+            print(f"  rate limited, waiting {wait}s", flush=True)
+            time.sleep(wait)
             continue
         if r.status_code == 204:
             break
@@ -49,6 +51,8 @@ def get_all(path, max_pages=10_000, **params):
         items += body.get("items", [])
         cursor = body.get("next_cursor")
         pages += 1
+        if pages % 10 == 0:
+            print(f"  {path}: page {pages}, {len(items)} rows so far", flush=True)
         time.sleep(0.07)  # documented minimum gap is 60 ms
         if not cursor:
             break
@@ -56,7 +60,8 @@ def get_all(path, max_pages=10_000, **params):
 
 
 # 1) All fund profiles, every status (survivorship check starts here)
-prof = pd.DataFrame(get_all("/v2/fund/general-info/profiles"))
+print("Fetching all fund profiles (every status)...", flush=True)
+prof =pd.DataFrame(get_all("/v2/fund/general-info/profiles"))
 prof.to_csv(ROOT / "data/raw/probe_profiles.csv", index=False, encoding="utf-8-sig")
 print("\n=== Profiles ===")
 print("rows:", len(prof))

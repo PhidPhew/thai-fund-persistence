@@ -2,12 +2,12 @@
 
 **Question:** Do top Thai active equity funds win because of persistent manager skill, or just market/factor exposure?
 
-**Status:** G1 — data feasibility
+**Status:** G2 — building clean dataset
 
 | Gate | Status |
 |---|---|
-| G0 Question (preregistration.md) | draft |
-| G1 Data feasibility | in progress |
+| G0 Question (preregistration.md) | ✅ locked 2026-10-12 |
+| G1 Data feasibility | ✅ done |
 | G2 Clean dataset | — |
 | G3 Analysis | — |
 | G4 Investability | — |
