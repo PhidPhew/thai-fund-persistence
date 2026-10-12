@@ -1,0 +1,9 @@
+venv/
+.env
+data/raw/*
+data/processed/*
+!data/**/.gitkeep
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+*.csv
