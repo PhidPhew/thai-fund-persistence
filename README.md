@@ -2,14 +2,14 @@
 
 **Question:** Do top Thai active equity funds win because of persistent manager skill, or just market/factor exposure?
 
-**Status:** G2 — building clean dataset (Amendment 5: primary evaluation 2020–2025)
+**Status:** G3 — analysis (G2 closed; primary evaluation 2020–2025, 239 families)
 
 | Gate | Status |
 |---|---|
 | G0 Question (preregistration.md) | ✅ locked 2026-10-12 |
 | G1 Data feasibility | ✅ done |
-| G2 Clean dataset | series built; family definition pending |
-| G3 Analysis | — |
+| G2 Clean dataset | ✅ closed 2026-10-14 |
+| G3 Analysis | next |
 | G4 Investability | — |
 | G5 Write-up | — |
 

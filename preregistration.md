@@ -131,3 +131,33 @@ Decided after an independent review (OpenAI Codex, read-only) compared with Clau
   (b) January, (c) December; (d) YTD-derived monthly proxy for 2023–2025.
 - No-payout sub-sample (Amendment 4).
 - Report rank correlation and top-quintile overlap across methods, not only whether p-values change.
+
+### Amendment 6 — 2026-10-14 (replaces the family rule of Amendment 1; before any persistence statistic)
+**Reason:** name-based families are wrong in both directions (missed clones such as KFSTARRMF/KFTSTAR2, daily TE
+0.013%; false families such as K-SELECT/K-SELECTRMF, TE 0.56%). Only 9 of 25 name-matched pairs have TE < 0.10%,
+and 47 of 56 pairs with TE < 0.10% have different names. **Daily fund returns were used to design this rule;
+no ranking alpha, transition matrix, persistence statistic or p-value had been computed.**
+Reviewed independently by OpenAI Codex (read-only), which reproduced all family counts below.
+
+**Rule** (`src/build_families.py` → `config/families.csv`, `config/family_pairs.csv`)
+- Pairs: same AMC, ≥ 252 overlapping daily returns spanning ≥ 12 months (2014+).
+  TE = sample SD of the daily return difference, not annualised.
+- Core link: TE < 0.08% **and** corr ≥ 0.995 **and** TE < 0.12% in both halves of the overlap.
+- Gray: TE < 0.12% but not core → **separate in the primary analysis** (a false merge destroys a real portfolio;
+  a false split only adds dependence, which is disclosed). No hand adjudication (no ground-truth labels exist).
+- Complete-linkage: clusters merge only if every cross pair has overlap and passes the link rule
+  (single-linkage chained TLEQRMF with TLEQ-SELECT, TE 0.76%).
+- Frozen inputs: 2,294 pairs, sha256[:16] = 436f0ef663dfc689; 42 core links; 21 gray pairs (listed in
+  `config/family_pairs.csv`).
+
+**Families:** primary 239 (from 272 funds). Sensitivity: gray merged 225; TE-only complete-linkage at
+0.06% → 247, 0.10% → 229, 0.15% → 217.
+
+**Representative per family, chosen at each January ranking date using only information known then:**
+rankable on the prior 36 months → non-wrapper → longest usable history to that date → fewest flagged months →
+earlier registration date → `proj_id`. Locked for the whole 12-month evaluation window; closure of that project
+is recorded per the SEC register; no switching mid-year.
+
+**Wording / limits:** "return-based family classification" — not a claim of identical holdings. De-duplication
+does not make funds independent (median same-AMC TE 0.49%); inference in G3 must respect AMC-level dependence
+(e.g. AMC-clustered bootstrap / permutation within AMC blocks).

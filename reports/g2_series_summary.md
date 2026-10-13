@@ -29,13 +29,13 @@ Method: Amendment 5 (factsheet calendar-year return as annual constraint, modal 
   (their register status decides closure, not the NAV end).
 - 4 isolated rows quarantined (KF-ASET50-D 2004-10-27 etc.).
 
-## Open decision — strategy families (Amendment 1)
-Name-based families (247 families) are wrong in both directions, measured by daily return tracking error (TE)
-between same-AMC funds, 2014+:
-- **Missed clones:** KFSTARRMF/KFTSTAR2 TE 0.01%, STD/STD2 0.02%, KFEQRMF/KFSEQ 0.02%, BKA/BKA2 0.02% …
-- **False families:** K-SELECT/K-SELECTRMF TE 0.56%, ES-SMCAP/ES-SMCAPRMF 0.63%, B-TOPTEN/B-TOPTENRMF 0.72%.
-TE distribution of same-AMC pairs has a soft dip around 0.10–0.12%. Clusters by threshold:
-TE < 0.03% → 263; < 0.06% → 247; **< 0.10% → 224**; < 0.15% → 207 clusters.
-Draft clusters at 0.10%: `data/processed/tmp/clone_clusters_te010.csv`.
-Beyond clones, same-AMC funds are strongly related (median same-AMC TE 0.49%) → observations are not independent;
-relevant to the significance test in G3.
+## Strategy families — decided (Amendment 6)
+Return-based, complete-linkage (`src/build_families.py`): **239 families** from 272 funds in the primary analysis;
+sensitivity 225 (gray merged), 247 / 229 / 217 (TE-only 0.06 / 0.10 / 0.15%).
+My first draft used single-linkage (224 clusters) — wrong: it chained TLEQRMF with TLEQ-SELECT (TE 0.76%).
+Caught by the Codex review (reports/reviews/2026-10-14_families_codex_summary.md).
+
+## G2 status: CLOSED 2026-10-14
+Clean NAV → class lineage → monthly total returns (factsheet-constrained) → families. Carried into G3:
+representative-per-date selection, AMC-level dependence in inference, timing sensitivity for payouts,
+flagged NAV-only fund-years, 4 unresolved class seams.
