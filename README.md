@@ -8,7 +8,7 @@
 |---|---|
 | G0 Question (preregistration.md) | ✅ locked 2026-10-12 |
 | G1 Data feasibility | ✅ done |
-| G2 Clean dataset | — |
+| G2 Clean dataset | series built; family definition pending |
 | G3 Analysis | — |
 | G4 Investability | — |
 | G5 Write-up | — |
