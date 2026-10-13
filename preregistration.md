@@ -67,3 +67,20 @@ Multi-factor attribution (size/value/momentum), provident funds, foreign-investi
 
 ## Amendments
 (none)
+
+### Amendment 1 — 2026-10-13 (before any fund return was computed)
+**Change:** strategy families. RMF / SSF / Thai ESG versions of a fund are often registered as *separate projects*
+(e.g. K-SELECT and K-SELECTRMF), not as share classes. Counting them separately would double-count one manager's
+decisions and overstate the effective sample size.
+**Rule:** funds running the same strategy in a different tax wrapper form one family; the family is represented by the
+non-wrapper fund with the longest NAV history (if none, the wrapper fund with the longest history).
+Family grouping is proposed from fund names and confirmed by hand in `config/manual_overrides.csv`.
+**Why now:** discovered while building the universe file (G2 step 1); no performance data had been looked at.
+
+### Amendment 2 — 2026-10-13 (before any fund return was computed)
+**Clarification:** funds with no NAV ever reported (21 funds, almost all status `Expired` with no registration
+date — i.e. never launched) are excluded. This is not a survivorship exclusion: these funds never held investor money.
+
+### Amendment 3 — 2026-10-13 (before any fund return was computed)
+**Added robustness check:** T-NSET (`M0495_2546`) has an uncertain mandate (see reports/classification_notes.md).
+It is included in the main analysis; every headline result is also reported with it excluded.

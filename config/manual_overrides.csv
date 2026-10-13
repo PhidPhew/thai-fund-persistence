@@ -1,0 +1,34 @@
+﻿proj_id,include,reason,decided_by
+M0275_2558,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M1172_2557,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0486_2550,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0556_2558,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0330_2559,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0377_2558,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0665_2557,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0071_2566,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0193_2561,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0738_2562,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0039_2557,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0177_2560,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0229_2558,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0640_2560,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0173_2558,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0032_2562,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0163_2560,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0636_2559,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0757_2558,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0923_2556,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0397_2558,n,no NAV ever reported — never launched (status Expired / no regis_date) or no data; not a survivorship exclusion,rule
+M0012_2537,n,sector fund (infrastructure) — excluded per preregistration,rule
+M0259_2551,n,sector fund (infrastructure RMF) — excluded per preregistration,rule
+M0370_2558,n,sector fund (financials) — excluded per preregistration,rule
+M0332_2560,n,sector fund (healthcare) — excluded per preregistration,rule
+M0090_2546,n,sector fund (financials) — excluded per preregistration,rule
+M0173_2553,n,foreign (H-shares); daily corr with SCBSET 0.39,rule+data
+M0495_2546,y,FLAG mandate uncertain: name suggests index ('SET Fund') but 2005-16 beta 0.90 and alpha +1.5%/yr unlike index funds (K-SET50 1.03/-0.2%). Treated as active (closet-indexer); results also reported excluding it,nannam
+M0029_2538,y,"Thai active equity inferred: Thai name; monthly R2 0.88 vs SCBSET (foreign funds far lower); beta 0.84, alpha -2.4%/yr ~ K-EQUITY (0.87/-2.6%), unlike an index fund",nannam
+M0019_2536,y,"Thai active equity inferred: Thai name; monthly R2 0.81; beta 0.78, alpha -2.6%/yr ~ K-EQUITY",nannam
+M0020_2536,y,"Thai active equity inferred: Thai name; monthly R2 0.84; beta 0.77, alpha -1.9%/yr ~ K-EQUITY",nannam
+M0009_2537,y,"Thai active equity inferred: monthly corr 0.92 (= K-EQUITY). Low daily corr (0.70) caused by NAV data error (2007-03-01 +70% / 03-02 -69.5%), not strategy",nannam
+M0884_2554,n,index fund (SET50) — passive,rule
