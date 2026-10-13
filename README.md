@@ -2,7 +2,7 @@
 
 **Question:** Do top Thai active equity funds win because of persistent manager skill, or just market/factor exposure?
 
-**Status:** G2 — building clean dataset
+**Status:** G2 — building clean dataset (Amendment 5: primary evaluation 2020–2025)
 
 | Gate | Status |
 |---|---|

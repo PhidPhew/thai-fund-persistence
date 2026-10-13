@@ -84,3 +84,50 @@ date — i.e. never launched) are excluded. This is not a survivorship exclusion
 ### Amendment 3 — 2026-10-13 (before any fund return was computed)
 **Added robustness check:** T-NSET (`M0495_2546`) has an uncertain mandate (see reports/classification_notes.md).
 It is included in the main analysis; every headline result is also reported with it excluded.
+
+### Amendment 4 — 2026-10-13 (before any fund return was computed)
+1. **Wording:** the study measures **fund-level** persistence (a `proj_id` over time), not individual manager skill —
+   manager changes are not tracked. Conclusions are phrased accordingly.
+2. **Closure is defined by the SEC register** (`fund_status` Liquidated/Canceled + `cancel_date`), never by the date
+   NAV stops. A fund whose NAV ends but whose status is Registered is never counted as closed.
+3. **Class lineage:** a fund's return series may chain several share classes across renames. Each link is recorded in
+   `config/class_lineage.csv` with an evidence level (verified = AMC document; probable = same `proj_id` + NAV continuity;
+   unresolved). Default: verified and probable links are chained; results are also reported without probable links.
+4. **Added robustness check — dividend measurement:** NAV-based payout detection misses small payouts
+   (test: KFLTFA50-D, announced 0.30 THB ≈ 1.6% on 2021-02-11, showed only ≈ −0.8% vs SCBSET). A missed payout lowers
+   the same fund's return every year, which can manufacture persistence. Therefore the persistence test is also run on
+   the sub-sample of funds with no detected or announced payouts in the sample period.
+
+### Amendment 5 — 2026-10-14 (before any persistence statistic, transition matrix or p-value was computed)
+**Reason:** measurement feasibility, not results. SEC NAV is price-only and the dividend-history endpoint is empty.
+NAV-based payout detection has ~31% recall (reports/g2_dividend_findings.md). Fund-reported calendar-year returns
+(factsheet, dividends included) exist for 2017–2025 (184–246 funds/year) but for only ~2 funds in 2014–2016.
+A missed payout lowers the same fund's return every year, which manufactures persistence in the direction of H1.
+Decided after an independent review (OpenAI Codex, read-only) compared with Claude's proposal; decision by the author.
+
+**Total-return construction**
+1. Monthly price returns from month-end NAV of the selected (lineage-chained) class.
+2. For fund i, year y: k = [log(1+R_factsheet) − Σ log(1+r_NAV,m)] / 12, added to each month's log return, so the
+   12 monthly returns compound exactly to the factsheet annual return. Payout timing is unknown; this is a
+   timing-neutral convention, not a claim that payouts are monthly.
+3. Factsheet annual value = modal value across monthly factsheet snapshots (rounded to 0.01pp), not the latest
+   snapshot (110 keys disagree by >0.05pp, max 31.5pp). No unique mode → value stable over ≥3 consecutive snapshots;
+   otherwise missing.
+4. Negative implied payout below −0.5% that cannot be explained by class/date alignment → fund-year excluded (no
+   "negative dividends").
+5. Fund-years with no factsheet value: NAV-only returns, **flagged and kept** (not dropped, to avoid silent
+   survivorship); all headline results also reported with flagged fund-years excluded.
+
+**Sample (replaces the primary sample section)**
+- Primary: returns from 2017-01; first ranking 2020-01; evaluation years **2020–2025** (6 years).
+  36-month ranking, January ranking, 12-month evaluation, SCBSET benchmark and the power rule are unchanged.
+  Provisional rankable funds per year: 168–226 (above the 80-fund threshold → quintiles).
+- Evaluation years 2017–2019 (ranking on 2014–2016 NAV-only data): reported as exploratory only, not pooled
+  into the primary statistic.
+- The 2002+ series is renamed **price-return robustness** (no payout correction available).
+
+**Sensitivity analyses added**
+- Payout allocation: whole annual correction in (a) the month with the lowest fund-minus-benchmark residual,
+  (b) January, (c) December; (d) YTD-derived monthly proxy for 2023–2025.
+- No-payout sub-sample (Amendment 4).
+- Report rank correlation and top-quintile overlap across methods, not only whether p-values change.
