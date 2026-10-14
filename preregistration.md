@@ -161,3 +161,40 @@ is recorded per the SEC register; no switching mid-year.
 **Wording / limits:** "return-based family classification" — not a claim of identical holdings. De-duplication
 does not make funds independent (median same-AMC TE 0.49%); inference in G3 must respect AMC-level dependence
 (e.g. AMC-clustered bootstrap / permutation within AMC blocks).
+
+### Amendment 7 — 2026-10-14 (inference; before any persistence statistic, transition matrix or p-value)
+**Reason:** funds in the same AMC are dependent (median monthly CAPM-residual correlation 0.354 within AMC vs 0.186
+across AMCs). In a Codex simulation that respects the AMC structure but has **no** persistence, the original
+fund-level permutation rejected H0 in 11.8% of runs at nominal 5%. Reviewed independently by OpenAI Codex
+(read-only, reports/reviews/2026-10-14_inference_codex.md); decision by the author.
+
+**Definitions locked**
+- Rankable at ranking date Jan Y: 36 consecutive non-missing monthly total returns (Jan Y−3 … Dec Y−1) and not
+  closed (SEC register) before Jan Y. One representative per family (Amendment 6 priority rule).
+- Alpha: OLS of the fund's monthly total return on SCBSET's monthly return (intercept = alpha, no risk-free rate —
+  SCBSET is net of fees and investable; a Thai risk-free series is not in the dataset). Limitation noted.
+- Top quintile: the K = round-half-up(0.2·n) highest alphas (ties by proj_id).
+- Evaluation year Y: a cohort member closed per the SEC register during Y → Y_i = 0 ("closed").
+  Otherwise ≥ 9 monthly returns in Y → evaluation alpha on the available months; < 9 → excluded from that year
+  and flagged (sensitivity: counted as Y_i = 0).
+  Evaluation top quintile = top round-half-up(0.2·m) among the m members with an evaluation alpha.
+- Exact null rate per year: p0_y = K_eval,y / N_y, N_y = members with an evaluation alpha + closed members.
+
+**Primary test**
+Δ = Σ X_iy (Y_iy − p0_y) / Σ X_iy over 2020–2025 (X = top quintile at ranking). H0: Δ ≤ 0, one-sided α = 0.05.
+Restricted wild cluster bootstrap-t clustered by AMC (`comp_name_en`), Webb six-point weights, **one weight per AMC
+used for all years**, CR2 standard errors, 99,999 draws, seed 20261014.
+Reported: P̂ = Σ X·Y / Σ X, pooled null P̂0, 95% CI of P̂ by inverting the same bootstrap test,
+leave-one-AMC-out Δ, share of top observations from the largest AMC, Δ by year.
+
+**Secondary (Holm-adjusted together)**
+1. Within-AMC persistence: Y on X with AMC×year fixed effects (cells with both X = 0 and 1), WCR by AMC, CR1.
+2. Top-minus-bottom quintile spread in evaluation alpha, year fixed effects, WCR by AMC, CR1.
+AMC-level persistence (whole houses) and the 2017–2019 evaluation years: descriptive only.
+
+**Sensitivity:** gray-merged families; T-NSET excluded; flagged NAV-only fund-years excluded; missing-evaluation
+members counted as Y = 0; payout-timing variants (Amendment 5); no-payout sub-sample (Amendment 4).
+
+**Power statement (written before results):** in Codex's AMC-structured simulation this test detects a true
+repeat rate of 26% only ~11% of the time, 33% ~58%, 40% ~90%. A non-significant result therefore means
+"the data cannot tell", not "no persistence".
