@@ -2,15 +2,15 @@
 
 **Question:** Do top Thai active equity funds win because of persistent manager skill, or just market/factor exposure?
 
-**Status:** G3 — analysis (G2 closed; primary evaluation 2020–2025, 239 families)
+**Status:** G4 — investability (G3: persistence found under CAPM, p = 0.025; see reports/g3_results.md)
 
 | Gate | Status |
 |---|---|
 | G0 Question (preregistration.md) | ✅ locked 2026-10-12 |
 | G1 Data feasibility | ✅ done |
 | G2 Clean dataset | ✅ closed 2026-10-14 |
-| G3 Analysis | next |
-| G4 Investability | — |
+| G3 Analysis | ✅ primary + sensitivity done (reports/g3_results.md) |
+| G4 Investability | next |
 | G5 Write-up | — |
 
 ## Setup

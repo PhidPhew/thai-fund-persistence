@@ -103,8 +103,9 @@ pp = pan[pan["year"] >= 2020].copy()
 pp["rank_q"] = pp.groupby("year")["alpha_rank"].transform(lambda s: pd.qcut(s.rank(method="first"), 5, labels=[5, 4, 3, 2, 1]))
 pp["eval_q"] = pp.groupby("year")["alpha_eval"].transform(
     lambda s: pd.qcut(s.rank(method="first"), 5, labels=[5, 4, 3, 2, 1]) if s.notna().sum() >= 5 else np.nan)
-pp["eval_q"] = pp["eval_q"].astype("object").where(pp["status"] == "eval", pp["status"])
-tm = pd.crosstab(pp["rank_q"], pp["eval_q"], normalize="index")
+pp["eval_q"] = pp["eval_q"].astype("object").map(lambda v: v if pd.isna(v) else f"Q{int(v)}")
+pp["eval_q"] = pp["eval_q"].where(pp["status"] == "eval", pp["status"])
+tm = pd.crosstab(pp["rank_q"].astype(int), pp["eval_q"], normalize="index")
 out.append("## Transition matrix 2020–2025 (row = ranking quintile, 1 = top; share of row)\n" + tm.to_markdown(floatfmt=".2f") + "\n")
 
 # secondary
