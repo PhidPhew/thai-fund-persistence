@@ -2,7 +2,7 @@
 
 **Question:** Do top Thai active equity funds win because of persistent manager skill, or just market/factor exposure?
 
-**Status:** G4 — investability (G3: persistence found under CAPM, p = 0.025; see reports/g3_results.md)
+**Status:** G5 — write-up (G3: persistence under CAPM, p = 0.025; G4: thin, non-significant edge)
 
 | Gate | Status |
 |---|---|
@@ -10,8 +10,8 @@
 | G1 Data feasibility | ✅ done |
 | G2 Clean dataset | ✅ closed 2026-10-14 |
 | G3 Analysis | ✅ primary + sensitivity done (reports/g3_results.md) |
-| G4 Investability | next |
-| G5 Write-up | — |
+| G4 Investability | ✅ done (reports/g4_investability.md) |
+| G5 Write-up | next |
 
 ## Setup
 ```bash
